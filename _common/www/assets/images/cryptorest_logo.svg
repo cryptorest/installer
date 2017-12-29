@@ -14,7 +14,7 @@
    viewBox="0 0 128 64"
    version="1.1"
    id="svg8"
-   sodipodi:docname="cryptrest_logo-128x64.svg"
+   sodipodi:docname="cryptorest_logo.svg"
    inkscape:version="0.92.1 r15371">
   <defs
      id="defs2" />
@@ -51,7 +51,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>

@@ -9,12 +9,12 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="128"
-   height="64"
-   viewBox="0 0 128 64"
+   width="96"
+   height="48"
+   viewBox="0 0 96 48"
    version="1.1"
    id="svg8"
-   sodipodi:docname="cryptrest_logo.svg"
+   sodipodi:docname="cryptorest_logo-96x48.svg"
    inkscape:version="0.92.1 r15371">
   <defs
      id="defs2" />
@@ -27,7 +27,7 @@
      inkscape:pageshadow="2"
      inkscape:zoom="9.4"
      inkscape:cx="39.138298"
-     inkscape:cy="31.83086"
+     inkscape:cy="31.830861"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -51,7 +51,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -59,9 +59,10 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(4.9999998e-7,-280.06667)">
+     transform="translate(7.4999997e-7,-296.06667)">
     <g
-       id="g6649">
+       id="g6649"
+       transform="matrix(0.74999999,0,0,0.74999999,0,86.016672)">
       <g
          id="g6617">
         <path

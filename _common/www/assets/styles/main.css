@@ -30,19 +30,19 @@ html, body {overflow: hidden; min-width: 400px; min-height: 800px; position: rel
 a, p {border: 0; padding: 0; margin: 0; font-family: Cone, Helvetica, Arial; color: #414747; font-size: 102%; text-decoration: none; outline: none; cursor: default; text-transform: none;}
 
 .logo-64x32 {position: relative; padding: 0; margin: auto; top: 0; bottom: 0; left: 0; right: 0; height: 32px; width: 64px; background: none;}
-.cryptrest-logo-64x32, .cryptrest-logo-64x32:hover, .cryptrest-logo-64x32:visited, .cryptrest-logo-64x32:active, .cryptrest-logo-64x32:focus {position: relative; padding: 0; margin: 0; top: 0; bottom: 0; left: 0; right: 0; height: 32px; width: 64px; outline: none; text-decoration: none; text-transform: none; z-index: 10; background-image: url(../images/cryptrest_logo-64x32.svg); background-color: none; background-repeat: no-repeat; background-position: center center; background-size: 64px 32px;}
-.cryptrest-logo-64x32:hover {cursor: pointer;}
-* HTML .cryptrest-logo-64x32:hover {cursor: hand;}
+.cryptorest-logo-64x32, .cryptorest-logo-64x32:hover, .cryptorest-logo-64x32:visited, .cryptorest-logo-64x32:active, .cryptorest-logo-64x32:focus {position: relative; padding: 0; margin: 0; top: 0; bottom: 0; left: 0; right: 0; height: 32px; width: 64px; outline: none; text-decoration: none; text-transform: none; z-index: 10; background-image: url(../images/cryptorest_logo-64x32.svg); background-color: none; background-repeat: no-repeat; background-position: center center; background-size: 64px 32px;}
+.cryptorest-logo-64x32:hover {cursor: pointer;}
+* HTML .cryptorest-logo-64x32:hover {cursor: hand;}
 
 .logo-96x48 {position: relative; padding: 0; margin: auto; top: 0; bottom: 0; left: 0; right: 0; height: 48px; width: 96px; background: none;}
-.cryptrest-logo-96x48, .cryptrest-logo-96x48:hover, .cryptrest-logo-96x48:visited, .cryptrest-logo-96x48:active, .cryptrest-logo-96x48:focus {position: relative; padding: 0; margin: 0; top: 0; bottom: 0; left: 0; right: 0; height: 48px; width: 96px; outline: none; text-decoration: none; text-transform: none; z-index: 10; background-image: url(../images/cryptrest_logo-96x48.svg); background-color: none; background-repeat: no-repeat; background-position: center center; background-size: 96px 48px;}
-.cryptrest-logo-96x48:hover {cursor: pointer;}
-* HTML .cryptrest-logo-96x48:hover {cursor: hand;}
+.cryptorest-logo-96x48, .cryptorest-logo-96x48:hover, .cryptorest-logo-96x48:visited, .cryptorest-logo-96x48:active, .cryptorest-logo-96x48:focus {position: relative; padding: 0; margin: 0; top: 0; bottom: 0; left: 0; right: 0; height: 48px; width: 96px; outline: none; text-decoration: none; text-transform: none; z-index: 10; background-image: url(../images/cryptorest_logo-96x48.svg); background-color: none; background-repeat: no-repeat; background-position: center center; background-size: 96px 48px;}
+.cryptorest-logo-96x48:hover {cursor: pointer;}
+* HTML .cryptorest-logo-96x48:hover {cursor: hand;}
 
 .logo-128x64 {position: relative; padding: 0; margin: auto; top: 0; bottom: 0; left: 0; right: 0; height: 64px; width: 128px; background: none;}
-.cryptrest-logo-128x64, .cryptrest-logo-128x64:hover, .cryptrest-logo-128x64:visited, .cryptrest-logo-128x64:active, .cryptrest-logo-128x64:focus {position: relative; padding: 0; margin: 0; top: 0; bottom: 0; left: 0; right: 0; height: 64px; width: 128px; outline: none; text-decoration: none; text-transform: none; z-index: 10; background-image: url(../images/cryptrest_logo-128x64.svg); background-color: none; background-repeat: no-repeat; background-position: center center; background-size: 128px 64px;}
-.cryptrest-logo-128x64:hover {cursor: pointer;}
-* HTML .cryptrest-logo-128x64:hover {cursor: hand;}
+.cryptorest-logo-128x64, .cryptorest-logo-128x64:hover, .cryptorest-logo-128x64:visited, .cryptorest-logo-128x64:active, .cryptorest-logo-128x64:focus {position: relative; padding: 0; margin: 0; top: 0; bottom: 0; left: 0; right: 0; height: 64px; width: 128px; outline: none; text-decoration: none; text-transform: none; z-index: 10; background-image: url(../images/cryptorest_logo-128x64.svg); background-color: none; background-repeat: no-repeat; background-position: center center; background-size: 128px 64px;}
+.cryptorest-logo-128x64:hover {cursor: pointer;}
+* HTML .cryptorest-logo-128x64:hover {cursor: hand;}
 
 /* Header */
 .box-top {position: fixed; padding: 0; margin: 0; width: 100%; height: 96px; background: none;}
