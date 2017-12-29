@@ -2,60 +2,60 @@
 
 CURRENT_DIR="${CURRENT_DIR:=$(cd $(dirname $0) && pwd -P)}"
 
-CRYPTREST_ENV_FILE="$CURRENT_DIR/../.env"
-CRYPTREST_NGINX_ETC_ENV_FILE="$CURRENT_DIR/../etc/nginx/.env"
+CRYPTOREST_ENV_FILE="$CURRENT_DIR/../.env"
+CRYPTOREST_NGINX_ETC_ENV_FILE="$CURRENT_DIR/../etc/nginx/.env"
 
-if [ ! -f "$CRYPTREST_ENV_FILE" ]; then
-    CRYPTREST_ENV_FILE="$CURRENT_DIR/../../.env"
-    if [ ! -f "$CRYPTREST_NGINX_ETC_ENV_FILE" ]; then
-        CRYPTREST_NGINX_ETC_ENV_FILE="$CURRENT_DIR/../../etc/nginx/.env"
+if [ ! -f "$CRYPTOREST_ENV_FILE" ]; then
+    CRYPTOREST_ENV_FILE="$CURRENT_DIR/../../.env"
+    if [ ! -f "$CRYPTOREST_NGINX_ETC_ENV_FILE" ]; then
+        CRYPTOREST_NGINX_ETC_ENV_FILE="$CURRENT_DIR/../../etc/nginx/.env"
     fi
 fi
 
-. "$CRYPTREST_ENV_FILE"
-. "$CRYPTREST_NGINX_ETC_ENV_FILE"
+. "$CRYPTOREST_ENV_FILE"
+. "$CRYPTOREST_NGINX_ETC_ENV_FILE"
 
-CRYPTREST_ENV_FILE="$CURRENT_DIR/../.env"
-CRYPTREST_LETSENCRYPT_ETC_ENV_FILE="$CURRENT_DIR/../etc/letsencrypt/.env"
+CRYPTOREST_ENV_FILE="$CURRENT_DIR/../.env"
+CRYPTOREST_LETSENCRYPT_ETC_ENV_FILE="$CURRENT_DIR/../etc/letsencrypt/.env"
 
-if [ ! -f "$CRYPTREST_ENV_FILE" ]; then
-    CRYPTREST_ENV_FILE="$CURRENT_DIR/../../.env"
-    if [ ! -f "$CRYPTREST_LETSENCRYPT_ETC_ENV_FILE" ]; then
-        CRYPTREST_LETSENCRYPT_ETC_ENV_FILE="$CURRENT_DIR/../../etc/letsencrypt/.env"
+if [ ! -f "$CRYPTOREST_ENV_FILE" ]; then
+    CRYPTOREST_ENV_FILE="$CURRENT_DIR/../../.env"
+    if [ ! -f "$CRYPTOREST_LETSENCRYPT_ETC_ENV_FILE" ]; then
+        CRYPTOREST_LETSENCRYPT_ETC_ENV_FILE="$CURRENT_DIR/../../etc/letsencrypt/.env"
     fi
 fi
 
-. "$CRYPTREST_LETSENCRYPT_ETC_ENV_FILE"
+. "$CRYPTOREST_LETSENCRYPT_ETC_ENV_FILE"
 
 
-CRYPTREST_DIR="${CRYPTREST_DIR:=$(cd $(dirname $0)/../ && pwd -P)}"
-CRYPTREST_PUBLIC_KEY_PINS=''
+CRYPTOREST_DIR="${CRYPTOREST_DIR:=$(cd $(dirname $0)/../ && pwd -P)}"
+CRYPTOREST_PUBLIC_KEY_PINS=''
 
-CRYPTREST_WWW_DIR="$CRYPTREST_DIR/www"
-CRYPTREST_ETC_DIR="$CRYPTREST_DIR/etc"
-CRYPTREST_ETC_SSL_DIR="$CRYPTREST_ETC_DIR/ssl"
-CRYPTREST_OPT_DIR="$CRYPTREST_DIR/opt"
-CRYPTREST_VAR_LOG_DIR="$CRYPTREST_DIR/var/log"
+CRYPTOREST_WWW_DIR="$CRYPTOREST_DIR/www"
+CRYPTOREST_ETC_DIR="$CRYPTOREST_DIR/etc"
+CRYPTOREST_ETC_SSL_DIR="$CRYPTOREST_ETC_DIR/ssl"
+CRYPTOREST_OPT_DIR="$CRYPTOREST_DIR/opt"
+CRYPTOREST_VAR_LOG_DIR="$CRYPTOREST_DIR/var/log"
 
-CRYPTREST_OPENSSL_OPT_DIR="$CRYPTREST_OPT_DIR/openssl"
-CRYPTREST_OPENSSL_ETC_DIR="$CRYPTREST_ETC_DIR/openssl"
+CRYPTOREST_OPENSSL_OPT_DIR="$CRYPTOREST_OPT_DIR/openssl"
+CRYPTOREST_OPENSSL_ETC_DIR="$CRYPTOREST_ETC_DIR/openssl"
 
-CRYPTREST_NGINX_VAR_LOG_DIR="$CRYPTREST_VAR_LOG_DIR/nginx"
-CRYPTREST_NGINX_ETC_DIR="$CRYPTREST_ETC_DIR/nginx"
-CRYPTREST_NGINX_OPT_DIR="$CRYPTREST_OPT_DIR/nginx"
+CRYPTOREST_NGINX_VAR_LOG_DIR="$CRYPTOREST_VAR_LOG_DIR/nginx"
+CRYPTOREST_NGINX_ETC_DIR="$CRYPTOREST_ETC_DIR/nginx"
+CRYPTOREST_NGINX_OPT_DIR="$CRYPTOREST_OPT_DIR/nginx"
 
-CRYPTREST_LETSENCRYPT_OPT_DIR="$CRYPTREST_OPT_DIR/letsencrypt"
-CRYPTREST_LETSENCRYPT_VAR_LOG_DIR="$CRYPTREST_VAR_LOG_DIR/letsencrypt"
+CRYPTOREST_LETSENCRYPT_OPT_DIR="$CRYPTOREST_OPT_DIR/letsencrypt"
+CRYPTOREST_LETSENCRYPT_VAR_LOG_DIR="$CRYPTOREST_VAR_LOG_DIR/letsencrypt"
 
 
 letsencrypt_init_prepare()
 {
-    mkdir -p "$CRYPTREST_SSL_DOMAIN_DIR" && \
-    chmod 700 "$CRYPTREST_SSL_DOMAIN_DIR" && \
-    mkdir -p "$CRYPTREST_WWW_DOMAIN_DIR" && \
-    chmod 700 "$CRYPTREST_WWW_DOMAIN_DIR" && \
-    mkdir -p "$CRYPTREST_NGINX_LOG_DOMAIN_DIR" && \
-    chmod 700 "$CRYPTREST_NGINX_LOG_DOMAIN_DIR" && \
+    mkdir -p "$CRYPTOREST_SSL_DOMAIN_DIR" && \
+    chmod 700 "$CRYPTOREST_SSL_DOMAIN_DIR" && \
+    mkdir -p "$CRYPTOREST_WWW_DOMAIN_DIR" && \
+    chmod 700 "$CRYPTOREST_WWW_DOMAIN_DIR" && \
+    mkdir -p "$CRYPTOREST_NGINX_LOG_DOMAIN_DIR" && \
+    chmod 700 "$CRYPTOREST_NGINX_LOG_DOMAIN_DIR" && \
     openssl_session_ticket_key_define && \
     #openssl_ecdsa_define && \
     openssl_hd_param_define && \
@@ -66,38 +66,38 @@ letsencrypt_init_prepare()
     letsencrypt_log_dir_define && \
     nginx -v && \
     nginx_configs_define && \
-    chmod 555 "$CRYPTREST_WWW_DOMAIN_DIR"
+    chmod 555 "$CRYPTOREST_WWW_DOMAIN_DIR"
 }
 
 letsencrypt_init_define()
 {
     local domains=''
-    local log_dir="$CRYPTREST_LETSENCRYPT_VAR_LOG_DIR/$CRYPTREST_LIB_DOMAIN"
+    local log_dir="$CRYPTOREST_LETSENCRYPT_VAR_LOG_DIR/$CRYPTOREST_LIB_DOMAIN"
 
-    for domain in $CRYPTREST_DOMAINS; do
+    for domain in $CRYPTOREST_DOMAINS; do
         domains="$domains -d $domain"
     done
 
-    "$CRYPTREST_DIR/bin/cryptrest-letsencrypt" certonly --standalone --staple-ocsp --hsts --no-redirect --email "$CRYPTREST_EMAIL" --renew-by-default --rsa-key-size "$CRYPTREST_SSL_BIT_KEY_SIZE"$domains --logs-dir "$log_dir" --pre-hook "$CRYPTREST_NGINX_CMD_STOP" --post-hook "$CRYPTREST_NGINX_CMD_START"
-    #"$CRYPTREST_DIR/bin/cryptrest-letsencrypt" certonly --webroot $domains --email "$CRYPTREST_EMAIL" --csr $ECDSA_CSR --agree-tos
+    "$CRYPTOREST_DIR/bin/cryptorest-letsencrypt" certonly --standalone --staple-ocsp --hsts --no-redirect --email "$CRYPTOREST_EMAIL" --renew-by-default --rsa-key-size "$CRYPTOREST_SSL_BIT_KEY_SIZE"$domains --logs-dir "$log_dir" --pre-hook "$CRYPTOREST_NGINX_CMD_STOP" --post-hook "$CRYPTOREST_NGINX_CMD_START"
+    #"$CRYPTOREST_DIR/bin/cryptorest-letsencrypt" certonly --webroot $domains --email "$CRYPTOREST_EMAIL" --csr $ECDSA_CSR --agree-tos
 }
 
 letsencrypt_init_run()
 {
-    local domains_dir="$CRYPTREST_ETC_DIR/.domains"
+    local domains_dir="$CRYPTOREST_ETC_DIR/.domains"
 
-    . "$CRYPTREST_NGINX_OPT_DIR/config-define.sh"
+    . "$CRYPTOREST_NGINX_OPT_DIR/config-define.sh"
 
     for d in $(ls "$domains_dir"); do
         if [ -f "$domains_dir/$d" ]; then
             . "$domains_dir/$d"
 
-            CRYPTREST_SSL_DOMAIN_DIR="$CRYPTREST_ETC_SSL_DIR/$CRYPTREST_LIB_DOMAIN"
-            CRYPTREST_NGINX_LOG_DOMAIN_DIR="$CRYPTREST_NGINX_VAR_LOG_DIR/$CRYPTREST_LIB_DOMAIN"
-            CRYPTREST_WWW_DOMAIN_DIR="$CRYPTREST_WWW_DIR/$d"
+            CRYPTOREST_SSL_DOMAIN_DIR="$CRYPTOREST_ETC_SSL_DIR/$CRYPTOREST_LIB_DOMAIN"
+            CRYPTOREST_NGINX_LOG_DOMAIN_DIR="$CRYPTOREST_NGINX_VAR_LOG_DIR/$CRYPTOREST_LIB_DOMAIN"
+            CRYPTOREST_WWW_DOMAIN_DIR="$CRYPTOREST_WWW_DIR/$d"
 
-            . "$CRYPTREST_LETSENCRYPT_OPT_DIR/certs-define.sh"
-            . "$CRYPTREST_OPENSSL_OPT_DIR/certs-define.sh"
+            . "$CRYPTOREST_LETSENCRYPT_OPT_DIR/certs-define.sh"
+            . "$CRYPTOREST_OPENSSL_OPT_DIR/certs-define.sh"
 
             letsencrypt_init_prepare && \
             letsencrypt_init_define

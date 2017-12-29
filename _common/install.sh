@@ -1,60 +1,60 @@
 #!/bin/sh
 
-CRYPTREST__COMMON_WWW_DIR="$CRYPTREST_WWW_DIR/_common"
-CRYPTREST__COMMON_WWW_HTML_DIR="$CRYPTREST__COMMON_WWW_DIR/html"
-CRYPTREST__COMMON_WWW_HTML_ERRORS_DIR="$CRYPTREST__COMMON_WWW_HTML_DIR/errors"
-CRYPTREST__COMMON_WWW_ASSETS_DIR="$CRYPTREST__COMMON_WWW_DIR/assets"
-CRYPTREST__COMMON_WWW_ASSETS_ICONS_DIR="$CRYPTREST__COMMON_WWW_ASSETS_DIR/icons"
-CRYPTREST__COMMON_TITLE='CryptREST Common'
+CRYPTOREST__COMMON_WWW_DIR="$CRYPTOREST_WWW_DIR/_common"
+CRYPTOREST__COMMON_WWW_HTML_DIR="$CRYPTOREST__COMMON_WWW_DIR/html"
+CRYPTOREST__COMMON_WWW_HTML_ERRORS_DIR="$CRYPTOREST__COMMON_WWW_HTML_DIR/errors"
+CRYPTOREST__COMMON_WWW_ASSETS_DIR="$CRYPTOREST__COMMON_WWW_DIR/assets"
+CRYPTOREST__COMMON_WWW_ASSETS_ICONS_DIR="$CRYPTOREST__COMMON_WWW_ASSETS_DIR/icons"
+CRYPTOREST__COMMON_TITLE='CryptoREST Common'
 
 
-cryptrest_common_prepare()
+cryptorest_common_prepare()
 {
-    if [ -d "$CRYPTREST__COMMON_WWW_DIR" ]; then
-        chmod 700 "$CRYPTREST__COMMON_WWW_DIR"
+    if [ -d "$CRYPTOREST__COMMON_WWW_DIR" ]; then
+        chmod 700 "$CRYPTOREST__COMMON_WWW_DIR"
     fi
-    if [ -d "$CRYPTREST__COMMON_WWW_HTML_DIR" ]; then
-        chmod 700 "$CRYPTREST__COMMON_WWW_HTML_DIR"
+    if [ -d "$CRYPTOREST__COMMON_WWW_HTML_DIR" ]; then
+        chmod 700 "$CRYPTOREST__COMMON_WWW_HTML_DIR"
     fi
-    if [ -d "$CRYPTREST__COMMON_WWW_HTML_ERRORS_DIR" ]; then
-        chmod 700 "$CRYPTREST__COMMON_WWW_HTML_ERRORS_DIR"
+    if [ -d "$CRYPTOREST__COMMON_WWW_HTML_ERRORS_DIR" ]; then
+        chmod 700 "$CRYPTOREST__COMMON_WWW_HTML_ERRORS_DIR"
     fi
-    if [ -d "$CRYPTREST__COMMON_WWW_ASSETS_DIR" ]; then
-        chmod 700 "$CRYPTREST__COMMON_WWW_ASSETS_DIR"
+    if [ -d "$CRYPTOREST__COMMON_WWW_ASSETS_DIR" ]; then
+        chmod 700 "$CRYPTOREST__COMMON_WWW_ASSETS_DIR"
     fi
 
-    rm -rf "$CRYPTREST__COMMON_WWW_DIR"
+    rm -rf "$CRYPTOREST__COMMON_WWW_DIR"
 }
 
-cryptrest_common_install()
+cryptorest_common_install()
 {
-    mkdir -p "$CRYPTREST__COMMON_WWW_HTML_DIR" && \
-    chmod 700 "$CRYPTREST__COMMON_WWW_HTML_DIR"
+    mkdir -p "$CRYPTOREST__COMMON_WWW_HTML_DIR" && \
+    chmod 700 "$CRYPTOREST__COMMON_WWW_HTML_DIR"
 
 }
 
-cryptrest_common_define()
+cryptorest_common_define()
 {
-    cp -r "$CRYPTREST_CURRENT_DIR/_common/www/"* "$CRYPTREST__COMMON_WWW_DIR/" && \
-    chmod 400 "$CRYPTREST__COMMON_WWW_DIR/"* && \
-    chmod 700 "$CRYPTREST__COMMON_WWW_HTML_DIR" && \
-    chmod 444 "$CRYPTREST__COMMON_WWW_HTML_DIR/"*.html && \
-    chmod 700 "$CRYPTREST__COMMON_WWW_HTML_ERRORS_DIR" && \
-    chmod 444 "$CRYPTREST__COMMON_WWW_HTML_ERRORS_DIR/"*.html && \
-    chmod 555 "$CRYPTREST__COMMON_WWW_HTML_ERRORS_DIR" && \
-    chmod 555 "$CRYPTREST__COMMON_WWW_HTML_DIR" && \
-    chmod 700 "$CRYPTREST__COMMON_WWW_ASSETS_DIR" && \
-    chmod 700 "$CRYPTREST__COMMON_WWW_ASSETS_ICONS_DIR" && \
-    chmod 444 "$CRYPTREST__COMMON_WWW_ASSETS_ICONS_DIR/"* && \
-    chmod 555 "$CRYPTREST__COMMON_WWW_ASSETS_ICONS_DIR" && \
-    chmod 555 "$CRYPTREST__COMMON_WWW_ASSETS_DIR" && \
-    chmod 555 "$CRYPTREST__COMMON_WWW_DIR" && \
+    cp -r "$CRYPTOREST_CURRENT_DIR/_common/www/"* "$CRYPTOREST__COMMON_WWW_DIR/" && \
+    chmod 400 "$CRYPTOREST__COMMON_WWW_DIR/"* && \
+    chmod 700 "$CRYPTOREST__COMMON_WWW_HTML_DIR" && \
+    chmod 444 "$CRYPTOREST__COMMON_WWW_HTML_DIR/"*.html && \
+    chmod 700 "$CRYPTOREST__COMMON_WWW_HTML_ERRORS_DIR" && \
+    chmod 444 "$CRYPTOREST__COMMON_WWW_HTML_ERRORS_DIR/"*.html && \
+    chmod 555 "$CRYPTOREST__COMMON_WWW_HTML_ERRORS_DIR" && \
+    chmod 555 "$CRYPTOREST__COMMON_WWW_HTML_DIR" && \
+    chmod 700 "$CRYPTOREST__COMMON_WWW_ASSETS_DIR" && \
+    chmod 700 "$CRYPTOREST__COMMON_WWW_ASSETS_ICONS_DIR" && \
+    chmod 444 "$CRYPTOREST__COMMON_WWW_ASSETS_ICONS_DIR/"* && \
+    chmod 555 "$CRYPTOREST__COMMON_WWW_ASSETS_ICONS_DIR" && \
+    chmod 555 "$CRYPTOREST__COMMON_WWW_ASSETS_DIR" && \
+    chmod 555 "$CRYPTOREST__COMMON_WWW_DIR" && \
 
-    echo "$CRYPTREST__COMMON_TITLE: init"
+    echo "$CRYPTOREST__COMMON_TITLE: init"
     echo ''
 }
 
 
-cryptrest_common_prepare && \
-cryptrest_common_install && \
-cryptrest_common_define
+cryptorest_common_prepare && \
+cryptorest_common_install && \
+cryptorest_common_define

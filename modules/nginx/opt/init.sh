@@ -2,21 +2,21 @@
 
 CURRENT_DIR="${CURRENT_DIR:=$(cd "$(dirname "$0")" && pwd -P)}"
 
-CRYPTREST_ENV_FILE="$CURRENT_DIR/../.env"
-CRYPTREST_NGINX_ETC_ENV_FILE="$CURRENT_DIR/../etc/nginx/.env"
+CRYPTOREST_ENV_FILE="$CURRENT_DIR/../.env"
+CRYPTOREST_NGINX_ETC_ENV_FILE="$CURRENT_DIR/../etc/nginx/.env"
 
-if [ ! -f "$CRYPTREST_ENV_FILE" ]; then
-    CRYPTREST_ENV_FILE="$CURRENT_DIR/../../.env"
-    if [ ! -f "$CRYPTREST_NGINX_ETC_ENV_FILE" ]; then
-        CRYPTREST_NGINX_ETC_ENV_FILE="$CURRENT_DIR/../../etc/nginx/.env"
+if [ ! -f "$CRYPTOREST_ENV_FILE" ]; then
+    CRYPTOREST_ENV_FILE="$CURRENT_DIR/../../.env"
+    if [ ! -f "$CRYPTOREST_NGINX_ETC_ENV_FILE" ]; then
+        CRYPTOREST_NGINX_ETC_ENV_FILE="$CURRENT_DIR/../../etc/nginx/.env"
     fi
 fi
 
-. "$CRYPTREST_ENV_FILE"
-. "$CRYPTREST_NGINX_ETC_ENV_FILE"
+. "$CRYPTOREST_ENV_FILE"
+. "$CRYPTOREST_NGINX_ETC_ENV_FILE"
 
 
-CRYPTREST_DIR="${CRYPTREST_DIR:=$(cd "$(dirname "$0")"/../ && pwd -P)}"
+CRYPTOREST_DIR="${CRYPTOREST_DIR:=$(cd "$(dirname "$0")"/../ && pwd -P)}"
 
 
 nginx_init()
@@ -25,7 +25,7 @@ nginx_init()
     local m_file=''
 
     for m in $modules; do
-        m_file="$CRYPTREST_DIR/bin/cryptrest-nginx-$m-init"
+        m_file="$CRYPTOREST_DIR/bin/cryptorest-nginx-$m-init"
 
         if [ -f "$m_file" ]; then
             . "$m_file"

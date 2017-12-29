@@ -1,15 +1,15 @@
 #!/bin/sh
 
-CRYPTREST_NGINX_CONF_TEMPLATE_FILE_EXT='conf.template'
+CRYPTOREST_NGINX_CONF_TEMPLATE_FILE_EXT='conf.template'
 
 
 nginx_log_dir_define()
 {
     local domain="$1"
 
-    mkdir -p "$CRYPTREST_NGINX_VAR_LOG_DIR/$domain" && \
-    chmod 700 "$CRYPTREST_NGINX_VAR_LOG_DIR/$domain" && \
-    chown "$CRYPTREST_USER.$CRYPTREST_USER" "$CRYPTREST_NGINX_VAR_LOG_DIR/$domain"
+    mkdir -p "$CRYPTOREST_NGINX_VAR_LOG_DIR/$domain" && \
+    chmod 700 "$CRYPTOREST_NGINX_VAR_LOG_DIR/$domain" && \
+    chown "$CRYPTOREST_USER.$CRYPTOREST_USER" "$CRYPTOREST_NGINX_VAR_LOG_DIR/$domain"
 }
 
 nginx_links_define()
@@ -32,17 +32,17 @@ nginx_config_define()
     local template_file="$3"
 
     cp -f "$template_file" "$conf_file" && \
-    chown "$CRYPTREST_USER.$CRYPTREST_USER" "$conf_file" && \
+    chown "$CRYPTOREST_USER.$CRYPTOREST_USER" "$conf_file" && \
     chmod 400 "$conf_file"
 
     sed -i "s/\[DOMAIN\]/$domain/g" "$conf_file" && \
-    sed -i "s#\[ROOT_WWW\]#$CRYPTREST_WWW_DOMAIN_DIR#g" "$conf_file" && \
-    sed -i "s#\[LOG_WWW\]#$CRYPTREST_NGINX_LOG_DOMAIN_DIR#g" "$conf_file" && \
-    sed -i "s#\[SERVER_CIPHERS\]#$CRYPTREST_OPENSSL_SERVER_CIPHERS#g" "$conf_file" && \
-    sed -i "s#\[SSL_ECDH_CURVES\]#$CRYPTREST_SSL_ECDH_CURVES#g" "$conf_file" && \
-    sed -i "s#\[SSL_DOMAIN_DIR\]#$CRYPTREST_SSL_DOMAIN_DIR#g" "$conf_file" && \
-    sed -i "s#\[PUBLIC_KEY_PINS\]#$CRYPTREST_PUBLIC_KEY_PINS#g" "$conf_file" && \
-    sed -i "s#\[NGINX_CONF_DIR\]#$CRYPTREST_NGINX_ETC_DIR#g" "$conf_file"
+    sed -i "s#\[ROOT_WWW\]#$CRYPTOREST_WWW_DOMAIN_DIR#g" "$conf_file" && \
+    sed -i "s#\[LOG_WWW\]#$CRYPTOREST_NGINX_LOG_DOMAIN_DIR#g" "$conf_file" && \
+    sed -i "s#\[SERVER_CIPHERS\]#$CRYPTOREST_OPENSSL_SERVER_CIPHERS#g" "$conf_file" && \
+    sed -i "s#\[SSL_ECDH_CURVES\]#$CRYPTOREST_SSL_ECDH_CURVES#g" "$conf_file" && \
+    sed -i "s#\[SSL_DOMAIN_DIR\]#$CRYPTOREST_SSL_DOMAIN_DIR#g" "$conf_file" && \
+    sed -i "s#\[PUBLIC_KEY_PINS\]#$CRYPTOREST_PUBLIC_KEY_PINS#g" "$conf_file" && \
+    sed -i "s#\[NGINX_CONF_DIR\]#$CRYPTOREST_NGINX_ETC_DIR#g" "$conf_file"
 }
 
 nginx_configs_define()
@@ -53,10 +53,10 @@ nginx_configs_define()
 
     echo ''
 
-    for domain in $CRYPTREST_DOMAINS; do
-        domain_prefix="$(echo "$domain" | sed "s/$CRYPTREST_DOMAIN//")"
-        template_file="$CRYPTREST_NGINX_ETC_DIR/$domain_prefix$CRYPTREST_NGINX_CONF_TEMPLATE_FILE_EXT"
-        conf_file="$CRYPTREST_NGINX_ETC_DIR/$domain_prefix$CRYPTREST_DOMAIN.conf"
+    for domain in $CRYPTOREST_DOMAINS; do
+        domain_prefix="$(echo "$domain" | sed "s/$CRYPTOREST_DOMAIN//")"
+        template_file="$CRYPTOREST_NGINX_ETC_DIR/$domain_prefix$CRYPTOREST_NGINX_CONF_TEMPLATE_FILE_EXT"
+        conf_file="$CRYPTOREST_NGINX_ETC_DIR/$domain_prefix$CRYPTOREST_DOMAIN.conf"
 
         if [ -f "$template_file" ]; then
             nginx_log_dir_define "$domain" && \
