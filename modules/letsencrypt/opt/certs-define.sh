@@ -43,3 +43,15 @@ letsencrypt_public_key_pins_define()
         CRYPTOREST_PUBLIC_KEY_PINS="${CRYPTOREST_PUBLIC_KEY_PINS}pin-sha$ssl_bit_size=\"$hash\"; "
     fi
 }
+
+# OCSP
+letsencrypt_ocsp_key_define()
+{
+    openssl ocsp -no_nonce \
+        -url "http://$CRYPTOREST_LETSENCRYPT_OCSP_HOST" \
+        -header Host="$CRYPTOREST_LETSENCRYPT_OCSP_HOST" \
+        -respout "$CRYPTOREST_SSL_DOMAIN_DIR/ocsp.key" \
+        -issuer "$CRYPTOREST_SSL_DOMAIN_DIR/chain.pem" \
+        -VAfile "$CRYPTOREST_SSL_DOMAIN_DIR/chain.pem" \
+        -cert "$CRYPTOREST_SSL_DOMAIN_DIR/cert.pem"
+}

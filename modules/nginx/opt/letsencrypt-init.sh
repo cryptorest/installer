@@ -63,6 +63,7 @@ letsencrypt_init_prepare()
     #openssl_public_key_pins_define && \
     letsencrypt_key_links && \
     letsencrypt_public_key_pins_define && \
+    letsencrypt_ocsp_key_define && \
     letsencrypt_log_dir_define && \
     nginx -v && \
     nginx_configs_define && \
@@ -95,6 +96,7 @@ letsencrypt_init_run()
             CRYPTOREST_SSL_DOMAIN_DIR="$CRYPTOREST_ETC_SSL_DIR/$CRYPTOREST_LIB_DOMAIN"
             CRYPTOREST_NGINX_LOG_DOMAIN_DIR="$CRYPTOREST_NGINX_VAR_LOG_DIR/$CRYPTOREST_LIB_DOMAIN"
             CRYPTOREST_WWW_DOMAIN_DIR="$CRYPTOREST_WWW_DIR/$d"
+            CRYPTOREST_OCSP_HOST="$CRYPTOREST_LETSENCRYPT_OCSP_HOST"
 
             . "$CRYPTOREST_LETSENCRYPT_OPT_DIR/certs-define.sh"
             . "$CRYPTOREST_OPENSSL_OPT_DIR/certs-define.sh"

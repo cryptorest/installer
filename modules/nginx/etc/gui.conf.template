@@ -38,8 +38,8 @@ server {
 
     ssl_stapling on;
     ssl_stapling_verify on;
-#    ssl_stapling_file [SSL_DOMAIN_DIR]/ocsp.pem;
-#    ssl_stapling_responder [];
+    ssl_stapling_file [SSL_DOMAIN_DIR]/ocsp.key;
+    ssl_stapling_responder http://[OCSP_HOST];
 
 #    ssl_client_certificate [SSL_DOMAIN_DIR]/client.pem;
 #    ssl_verify_client on;
