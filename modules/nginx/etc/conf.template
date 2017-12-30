@@ -1,4 +1,4 @@
-upstream cryptrest_site {
+upstream cryptorest_site {
     server 127.0.0.1:64441;
 }
 
@@ -63,14 +63,14 @@ server {
     add_header Set-Cookie "Domain=[DOMAIN]; Path=/; Secure; HttpOnly";
     add_header Content-Security-Policy "default-src https://[DOMAIN]; base-uri https://[DOMAIN]; script-src https://[DOMAIN]; style-src https://[DOMAIN]; img-src https://[DOMAIN]; font-src https://[DOMAIN];";
 
-    location @cryptrest_site {
+    location @cryptorest_site {
         limit_except GET POST {
             deny all;
         }
 
         # limit_req_zone $binary_remote_addr zone=one:10m rate=1r/s;
         # limit_req zone=one burst=10 nodelay;
-        proxy_pass http://cryptrest_site;
+        proxy_pass http://cryptorest_site;
 
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
