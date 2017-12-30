@@ -6,7 +6,6 @@
 #
 # System utilities: curl, tar, sed, uname
 
-
 CRYPTOREST_CURRENT_DIR="$(cd $(dirname $0) && pwd -P)"
 
 CRYPTOREST_CURRENT_ENV_FILE="$CRYPTOREST_CURRENT_DIR/.env"
@@ -31,8 +30,6 @@ else
 fi
 
 
-CRYPTOREST_UTILS_LIST='curl tar sed uname'
-
 CRYPTOREST_CURRENT_DIR="$(cd $(dirname $0) && pwd -P)"
 
 CRYPTOREST_DOMAIN="${CRYPTOREST_DOMAIN:=crypt.rest}"
@@ -48,6 +45,7 @@ CRYPTOREST_MAIN_LIBS_LIST=''
 CRYPTOREST_MAIN_LIBS_BIN_DIR="$CRYPTOREST_MAIN_LIBS_DIR/bin"
 CRYPTOREST_IS_LOCAL=1
 CRYPTOREST_HOME_SHELL_PROFILE_FILES='.bashrc .mkshrc .zshrc .cshrc .kshrc .rshrc'
+CRYPTOREST_UTILITIES_LIST='curl tar sed uname'
 
 CRYPTOREST_NAME='cryptorest'
 CRYPTOREST_TITLE='CryptoREST'
@@ -84,7 +82,7 @@ CRYPTOREST_INSTALLER_ARGS="$*"
 
 cryptorest_utilities_check()
 {
-    for u in $CRYPTOREST_UTILS_LIST; do
+    for u in $CRYPTOREST_UTILITIES_LIST; do
         "$u" --version 1> /dev/null
         if [ $? -ne 0 ]; then
             echo "$CRYPTOREST_TITLE check: '$u' not found or installed"
@@ -299,14 +297,12 @@ cryptorest_bin_installer_define()
     rm -f "$CRYPTOREST_INSTALLER_BIN_FILE"* && \
 
     for f in $(ls "$CRYPTOREST_MAIN_LIBS_BIN_DIR/"*.sh); do
-        CRYPTOREST_MAIN_LIBS_LIST="$CRYPTOREST_MAIN_LIBS_LIST $f"
-
-        [ "$f" = 'structure' ] && continue
-
         file_name="$(basename -s .sh "$f")"
         html_dir="$CRYPTOREST_INSTALLER_WWW_DIR/$file_name"
         html_file="$html_dir/index.html"
         bin_file="$CRYPTOREST_INSTALLER_LIB_BIN_DIR/$(basename "$f")"
+
+        CRYPTOREST_MAIN_LIBS_LIST="$CRYPTOREST_MAIN_LIBS_LIST $file_name"
 
         if [ "$f" != "$bin_file" ]; then
             cp "$f" "$bin_file" && \
