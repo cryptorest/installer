@@ -79,7 +79,11 @@ letsencrypt_init_define()
         domains="$domains -d $domain"
     done
 
-    "$CRYPTOREST_DIR/bin/cryptorest-letsencrypt" certonly --standalone --staple-ocsp --hsts --no-redirect --email "$CRYPTOREST_EMAIL" --renew-by-default --rsa-key-size "$CRYPTOREST_SSL_BIT_KEY_SIZE"$domains --logs-dir "$log_dir" --pre-hook "$CRYPTOREST_NGINX_CMD_STOP" --post-hook "$CRYPTOREST_NGINX_CMD_START"
+    $CRYPTOREST_NGINX_CMD_STOP && \
+    "$CRYPTOREST_DIR/bin/cryptorest-letsencrypt" certonly --standalone --staple-ocsp --hsts --no-redirect --email "$CRYPTOREST_EMAIL" --renew-by-default --rsa-key-size "$CRYPTOREST_SSL_BIT_KEY_SIZE"$domains --logs-dir "$log_dir" && \
+    letsencrypt_ocsp_key_define && \
+    $CRYPTOREST_NGINX_CMD_START
+
     #"$CRYPTOREST_DIR/bin/cryptorest-letsencrypt" certonly --webroot $domains --email "$CRYPTOREST_EMAIL" --csr $ECDSA_CSR --agree-tos
 }
 
