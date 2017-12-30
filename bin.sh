@@ -1,6 +1,5 @@
 #!/bin/sh
 
-
 # Shell utilities: echo, printf, chmod, chown, mkdir,
 #                  ln, cp, ls, xargs, cat, exit, cut,
 #                  dirname, basename, tr, grep, cd, rm
@@ -31,6 +30,8 @@ else
     echo 'not loaded'
 fi
 
+
+CRYPTOREST_UTILS_LIST='curl tar sed uname'
 
 CRYPTOREST_CURRENT_DIR="$(cd $(dirname $0) && pwd -P)"
 
@@ -83,9 +84,7 @@ CRYPTOREST_INSTALLER_ARGS="$*"
 
 cryptorest_utilities_check()
 {
-    local utils_list='curl tar sed uname'
-
-    for u in $utils_list; do
+    for u in $CRYPTOREST_UTILS_LIST; do
         "$u" --version 1> /dev/null
         if [ $? -ne 0 ]; then
             echo "$CRYPTOREST_TITLE check: '$u' not found or installed"
@@ -252,7 +251,7 @@ cryptorest_profile_file_autoclean()
 
     cp "$profile_file" "$file_backup"
     [ -f "$file_backup" ] && \
-    grep -v '[Cc][Rr][Yy][Pp][Tt][Rr][Ee][Ss][Tt]' "$file_backup" | cat -s > "$profile_file" && \
+    grep -v '[Cc][Rr][Yy][Pp][Tt][Oo][Rr][Ee][Ss][Tt]' "$file_backup" | cat -s > "$profile_file" && \
     rm -f "$file_backup"
 }
 
