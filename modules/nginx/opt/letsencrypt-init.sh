@@ -81,7 +81,7 @@ letsencrypt_init_define()
     "$CRYPTOREST_DIR/bin/cryptorest-letsencrypt" certonly --standalone --staple-ocsp --hsts --no-redirect --email "$CRYPTOREST_EMAIL" --renew-by-default --rsa-key-size "$CRYPTOREST_SSL_BIT_KEY_SIZE"$domains --logs-dir "$log_dir" --pre-hook "$CRYPTOREST_NGINX_CMD_STOP" && \
     letsencrypt_ocsp_key_define && \
     openssl_csr_define && \
-    "$CRYPTOREST_DIR/bin/cryptorest-letsencrypt" certonly --email "$CRYPTOREST_EMAIL" --csr "$CRYPTOREST_SSL_DOMAIN_DIR/privkey.csr" --agree-tos$domains --logs-dir "$log_dir" --post-hook "$CRYPTOREST_NGINX_CMD_START"
+    "$CRYPTOREST_DIR/bin/cryptorest-letsencrypt" certonly --standalone --email "$CRYPTOREST_EMAIL" --csr "$CRYPTOREST_SSL_DOMAIN_DIR/privkey.csr" --agree-tos$domains --logs-dir "$log_dir" --post-hook "$CRYPTOREST_NGINX_CMD_START"
 
 }
 
