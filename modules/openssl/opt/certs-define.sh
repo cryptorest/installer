@@ -61,7 +61,8 @@ openssl_hd_param_define()
 
 openssl_ecdh_curves_define()
 {
-    openssl ecparam -list_curves | grep 'r1' | cut -d ':' -f 1 | grep -E "[3][8][4]|[5][1][2]|[5][2][1]" | xargs | tr ' ' ':'
+    # [5][1][2]
+    openssl ecparam -list_curves | grep 'r1' | cut -d ':' -f 1 | grep -E "[3][8][4]|[5][2][1]" | xargs | tr ' ' ':'
 }
 
 # ECDSA
@@ -75,7 +76,11 @@ openssl_ecdsa_define()
 # Certificate Signing Request (CSR)
 openssl_csr_define()
 {
-    openssl req -new -sha$CRYPTOREST_SSL_BIT_SIZE -key "$CRYPTOREST_OPENSSL_ECDSA_KEY_FILE" -nodes -out "$CRYPTOREST_OPENSSL_ECDSA_CSR_FILE" -outform pem
+    openssl req -out "$CRYPTOREST_SSL_DOMAIN_DIR/privkey.csr" -key "$CRYPTOREST_SSL_DOMAIN_DIR/privkey.pem" -new -config "$CRYPTOREST_OPENSSL_CSR_CONF_FILE" && \
+    openssl x509 -req -days 123 -in "$CRYPTOREST_SSL_DOMAIN_DIR/privkey.csr" -signkey "$CRYPTOREST_SSL_DOMAIN_DIR/privkey.pem" -out "$CRYPTOREST_SSL_DOMAIN_DIR/privkey.crt" -extensions v3_req -extfile "$CRYPTOREST_OPENSSL_CSR_CONF_FILE" && \
+    openssl x509 -x509toreq -in "$CRYPTOREST_SSL_DOMAIN_DIR/privkey.crt" -out "$CRYPTOREST_SSL_DOMAIN_DIR/privkey.csr" -signkey "$CRYPTOREST_SSL_DOMAIN_DIR/privkey.pem" && \
+    openssl x509 -inform der -in "$CRYPTOREST_SSL_DOMAIN_DIR/privkey.crt" -out "$CRYPTOREST_SSL_DOMAIN_DIR/csr.pem"
+#    openssl req -new -sha$CRYPTOREST_SSL_BIT_SIZE -key "$CRYPTOREST_OPENSSL_ECDSA_KEY_FILE" -nodes -out "$CRYPTOREST_OPENSSL_ECDSA_CSR_FILE" -outform pem
 }
 
 # ECDSA
