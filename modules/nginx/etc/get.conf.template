@@ -38,7 +38,7 @@ server {
     ssl_stapling_responder http://[OCSP_HOST];
 
     ssl_client_certificate [SSL_DOMAIN_DIR]/privkey.crt;
-    ssl_verify_client on;
+    ssl_verify_client optional;
 
 #    add_header Accept "application/ocsp-response";
     add_header Access-Control-Allow-Methods "GET, HEAD";

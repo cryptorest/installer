@@ -76,22 +76,21 @@ openssl_ecdsa_define()
 # Certificate Signing Request (CSR)
 openssl_csr_define()
 {
-    openssl req -out "$CRYPTOREST_SSL_DOMAIN_DIR/privkey.csr" -key "$CRYPTOREST_SSL_DOMAIN_DIR/privkey.pem" -new -config "$CRYPTOREST_OPENSSL_CSR_CONF_FILE" && \
+    openssl req -out "$CRYPTOREST_SSL_DOMAIN_DIR/privkey.csr" -key "$CRYPTOREST_SSL_DOMAIN_DIR/privkey.pem" -new -sha$CRYPTOREST_SSL_BIT_SIZE -config "$CRYPTOREST_OPENSSL_CSR_CONF_FILE" && \
     openssl x509 -req -days 123 -in "$CRYPTOREST_SSL_DOMAIN_DIR/privkey.csr" -signkey "$CRYPTOREST_SSL_DOMAIN_DIR/privkey.pem" -out "$CRYPTOREST_SSL_DOMAIN_DIR/privkey.crt" -extensions v3_req -extfile "$CRYPTOREST_OPENSSL_CSR_CONF_FILE" && \
     openssl x509 -x509toreq -in "$CRYPTOREST_SSL_DOMAIN_DIR/privkey.crt" -out "$CRYPTOREST_SSL_DOMAIN_DIR/privkey.csr" -signkey "$CRYPTOREST_SSL_DOMAIN_DIR/privkey.pem" && \
-    openssl x509 -inform der -in "$CRYPTOREST_SSL_DOMAIN_DIR/privkey.crt" -out "$CRYPTOREST_SSL_DOMAIN_DIR/csr.pem"
+    openssl x509 -in "$CRYPTOREST_SSL_DOMAIN_DIR/privkey.crt" -out "$CRYPTOREST_SSL_DOMAIN_DIR/csr.pem" -outform PEM
+
+#    openssl x509 -inform der -in "$CRYPTOREST_SSL_DOMAIN_DIR/privkey.crt" -out "$CRYPTOREST_SSL_DOMAIN_DIR/csr.pem"
 #    openssl req -new -sha$CRYPTOREST_SSL_BIT_SIZE -key "$CRYPTOREST_OPENSSL_ECDSA_KEY_FILE" -nodes -out "$CRYPTOREST_OPENSSL_ECDSA_CSR_FILE" -outform pem
 }
 
-# ECDSA
-openssl_ecdsa_define__()
-{
-    if [ -f "$CRYPTOREST_OPENSSL_CSR_CONF_FILE" ]; then
-        openssl req -new -sha$CRYPTOREST_SSL_BIT_SIZE -key "$CRYPTOREST_OPENSSL_PRIVATE_KEY_FILE" -out "$CRYPTOREST_OPENSSL_ECDSA_CSR_FILE" -subj "/CN=$CRYPTOREST_DOMAIN" -config "$CRYPTOREST_OPENSSL_CSR_CONF_FILE"
-#        openssl ecparam -genkey -name secp384r1 | openssl ec -out "$CRYPTOREST_OPENSSL_ECDSA_KEY_FILE"
-#        openssl req -new -sha256 -key "$CRYPTOREST_OPENSSL_ECDSA_CSR_FILE" -nodes -out "$CRYPTOREST_OPENSSL_ECDSA_CSR_FILE" -outform pem
-    fi
-}
+#openssl_ecdsa_define__()
+#{
+#    openssl req -new -sha$CRYPTOREST_SSL_BIT_SIZE -key "$CRYPTOREST_OPENSSL_PRIVATE_KEY_FILE" -out "$CRYPTOREST_OPENSSL_ECDSA_CSR_FILE" -subj "/CN=$CRYPTOREST_DOMAIN" -config "$CRYPTOREST_OPENSSL_CSR_CONF_FILE"
+#    openssl ecparam -genkey -name secp384r1 | openssl ec -out "$CRYPTOREST_OPENSSL_ECDSA_KEY_FILE"
+#    openssl req -new -sha256 -key "$CRYPTOREST_OPENSSL_ECDSA_CSR_FILE" -nodes -out "$CRYPTOREST_OPENSSL_ECDSA_CSR_FILE" -outform pem
+#}
 
 # PUBLIC_KEY_PINS
 openssl_public_key_pins_define()
