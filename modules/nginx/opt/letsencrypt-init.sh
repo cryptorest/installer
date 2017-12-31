@@ -56,10 +56,11 @@ letsencrypt_init_prepare()
     chmod 700 "$CRYPTOREST_WWW_DOMAIN_DIR" && \
     mkdir -p "$CRYPTOREST_NGINX_LOG_DOMAIN_DIR" && \
     chmod 700 "$CRYPTOREST_NGINX_LOG_DOMAIN_DIR" && \
+
     openssl_session_ticket_key_define && \
-    #openssl_ecdsa_define && \
     openssl_hd_param_define && \
     openssl_ciphers_define && \
+    #openssl_ecdsa_define && \
     #openssl_public_key_pins_define && \
     letsencrypt_key_links && \
     letsencrypt_public_key_pins_define && \
@@ -78,10 +79,10 @@ letsencrypt_init_define()
         domains="$domains -d $domain"
     done
 
-    "$CRYPTOREST_DIR/bin/cryptorest-letsencrypt" certonly --standalone --staple-ocsp --hsts --no-redirect --email "$CRYPTOREST_EMAIL" --renew-by-default --rsa-key-size "$CRYPTOREST_SSL_BIT_KEY_SIZE"$domains --logs-dir "$log_dir" --pre-hook "$CRYPTOREST_NGINX_CMD_STOP" && \
+    openssl_client_csr_define && \
+    "$CRYPTOREST_DIR/bin/cryptorest-letsencrypt" certonly --standalone --staple-ocsp --hsts --no-redirect --csr "$CRYPTOREST_SSL_DOMAIN_DIR/client.csr" --email "$CRYPTOREST_EMAIL" --renew-by-default --agree-tos --rsa-key-size "$CRYPTOREST_SSL_BIT_KEY_SIZE"$domains --logs-dir "$log_dir" --pre-hook "$CRYPTOREST_NGINX_CMD_STOP" && \
     letsencrypt_ocsp_key_define && \
-    openssl_csr_define && \
-    "$CRYPTOREST_DIR/bin/cryptorest-letsencrypt" certonly --standalone --email "$CRYPTOREST_EMAIL" --csr "$CRYPTOREST_SSL_DOMAIN_DIR/privkey.csr" --agree-tos$domains --logs-dir "$log_dir" --post-hook "$CRYPTOREST_NGINX_CMD_START"
+    $CRYPTOREST_NGINX_CMD_START
 
 }
 

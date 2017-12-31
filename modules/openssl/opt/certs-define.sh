@@ -74,12 +74,13 @@ openssl_ecdsa_define()
 }
 
 # Certificate Signing Request (CSR)
-openssl_csr_define()
+openssl_client_csr_define()
 {
-    openssl req -out "$CRYPTOREST_SSL_DOMAIN_DIR/privkey.csr" -key "$CRYPTOREST_SSL_DOMAIN_DIR/privkey.pem" -new -sha$CRYPTOREST_SSL_BIT_SIZE -config "$CRYPTOREST_OPENSSL_CSR_CONF_FILE" && \
-    openssl x509 -req -days 123 -in "$CRYPTOREST_SSL_DOMAIN_DIR/privkey.csr" -signkey "$CRYPTOREST_SSL_DOMAIN_DIR/privkey.pem" -out "$CRYPTOREST_SSL_DOMAIN_DIR/privkey.crt" -extensions v3_req -extfile "$CRYPTOREST_OPENSSL_CSR_CONF_FILE" && \
-    openssl x509 -in "$CRYPTOREST_SSL_DOMAIN_DIR/privkey.crt" -out "$CRYPTOREST_SSL_DOMAIN_DIR/csr.pem" -outform PEM && \
-    openssl x509 -x509toreq -in "$CRYPTOREST_SSL_DOMAIN_DIR/privkey.crt" -out "$CRYPTOREST_SSL_DOMAIN_DIR/privkey.csr" -signkey "$CRYPTOREST_SSL_DOMAIN_DIR/privkey.pem"
+    openssl req -out "$CRYPTOREST_SSL_DOMAIN_DIR/client.csr" -key "$CRYPTOREST_SSL_DOMAIN_DIR/client.pem" -new -sha$CRYPTOREST_SSL_BIT_SIZE -config "$CRYPTOREST_OPENSSL_CSR_CONF_FILE" && \
+    openssl req -new -subj "/CN=$CRYPTOREST_LIB_DOMAIN" -out "$CRYPTOREST_SSL_DOMAIN_DIR/client.csr" -nodes -sha"$CRYPTOREST_SSL_BIT_SIZE" -newkey rsa:$CRYPTOREST_SSL_BIT_KEY_SIZE -keyout "$CRYPTOREST_SSL_DOMAIN_DIR/client.pem" -sha$CRYPTOREST_SSL_BIT_SIZE -config "$CRYPTOREST_OPENSSL_CSR_CONF_FILE" && \
+    openssl x509 -req -days 123 -in "$CRYPTOREST_SSL_DOMAIN_DIR/client.csr" -signkey "$CRYPTOREST_SSL_DOMAIN_DIR/client.pem" -out "$CRYPTOREST_SSL_DOMAIN_DIR/client.crt" -extensions v3_req -extfile "$CRYPTOREST_OPENSSL_CSR_CONF_FILE" && \
+    openssl x509 -in "$CRYPTOREST_SSL_DOMAIN_DIR/client.crt" -out "$CRYPTOREST_SSL_DOMAIN_DIR/csr.pem" -outform PEM && \
+    openssl x509 -x509toreq -in "$CRYPTOREST_SSL_DOMAIN_DIR/client.crt" -out "$CRYPTOREST_SSL_DOMAIN_DIR/client.csr" -signkey "$CRYPTOREST_SSL_DOMAIN_DIR/client.pem"
 
 #    openssl x509 -inform der -in "$CRYPTOREST_SSL_DOMAIN_DIR/privkey.crt" -out "$CRYPTOREST_SSL_DOMAIN_DIR/csr.pem"
 #    openssl req -new -sha$CRYPTOREST_SSL_BIT_SIZE -key "$CRYPTOREST_OPENSSL_ECDSA_KEY_FILE" -nodes -out "$CRYPTOREST_OPENSSL_ECDSA_CSR_FILE" -outform pem
