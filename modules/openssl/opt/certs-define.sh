@@ -61,8 +61,8 @@ openssl_hd_param_define()
 
 openssl_ecdh_curves_define()
 {
-    # [5][1][2]
-    openssl ecparam -list_curves | grep 'r1' | cut -d ':' -f 1 | grep -E "[3][8][4]|[5][2][1]" | xargs | tr ' ' ':'
+    # [3][8][4]|[5][1][2]
+    openssl ecparam -list_curves | grep 'r1' | cut -d ':' -f 1 | grep -E "[5][2][1]" | xargs | tr ' ' ':'
 }
 
 # ECDSA
@@ -76,9 +76,9 @@ openssl_ecdsa_define()
 # Certificate Signing Request (CSR)
 openssl_client_csr_define()
 {
-    openssl req -new -out "$CRYPTOREST_SSL_DOMAIN_DIR/client.csr" -nodes -sha"$CRYPTOREST_SSL_BIT_SIZE" -newkey rsa:$CRYPTOREST_SSL_BIT_KEY_SIZE -keyout "$CRYPTOREST_SSL_DOMAIN_DIR/client.pem" -config "$CRYPTOREST_OPENSSL_CSR_CONF_FILE" && \
+    openssl req -new -out "$CRYPTOREST_SSL_DOMAIN_DIR/client.csr" -nodes -sha"$CRYPTOREST_SSL_BIT_SIZE" -newkey rsa:$CRYPTOREST_SSL_BIT_KEY_SIZE -keyout "$CRYPTOREST_SSL_DOMAIN_DIR/client.pem" -config "$CRYPTOREST_OPENSSL_CSR_CONF_FILE" #&& \
 #    openssl x509 -req -days 123 -in "$CRYPTOREST_SSL_DOMAIN_DIR/client.csr" -signkey "$CRYPTOREST_SSL_DOMAIN_DIR/client.pem" -out "$CRYPTOREST_SSL_DOMAIN_DIR/client.crt" -extensions v3_req -extfile "$CRYPTOREST_OPENSSL_CSR_CONF_FILE" && \
-    openssl x509 -x509toreq -in "$CRYPTOREST_SSL_DOMAIN_DIR/client.crt" -out "$CRYPTOREST_SSL_DOMAIN_DIR/client.csr" -signkey "$CRYPTOREST_SSL_DOMAIN_DIR/client.pem"
+#    openssl x509 -x509toreq -in "$CRYPTOREST_SSL_DOMAIN_DIR/client.crt" -out "$CRYPTOREST_SSL_DOMAIN_DIR/client.csr" -signkey "$CRYPTOREST_SSL_DOMAIN_DIR/client.pem"
 
 #    openssl req -out "$CRYPTOREST_SSL_DOMAIN_DIR/client.csr" -key "$CRYPTOREST_SSL_DOMAIN_DIR/client.pem" -new -sha$CRYPTOREST_SSL_BIT_SIZE -config "$CRYPTOREST_OPENSSL_CSR_CONF_FILE" && \
 #    openssl req -new -sha$CRYPTOREST_SSL_BIT_SIZE -key "$CRYPTOREST_OPENSSL_ECDSA_KEY_FILE" -nodes -out "$CRYPTOREST_OPENSSL_ECDSA_CSR_FILE" -outform pem

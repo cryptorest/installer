@@ -41,8 +41,8 @@ server {
     ssl_stapling_file [SSL_DOMAIN_DIR]/ocsp.key;
     ssl_stapling_responder http://[OCSP_HOST];
 
-    ssl_client_certificate [SSL_DOMAIN_DIR]/client.crt;
-    ssl_verify_client optional;
+#    ssl_client_certificate [SSL_DOMAIN_DIR]/client.crt;
+#    ssl_verify_client optional;
 
     add_header Access-Control-Allow-Methods "GET, POST, HEAD";
     add_header X-SSL-CERT "$ssl_client_cert";
