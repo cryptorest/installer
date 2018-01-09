@@ -40,6 +40,7 @@ server {
 #    ssl_client_certificate [SSL_DOMAIN_DIR]/client.crt;
 #    ssl_verify_client optional;
 
+#    add_header Accept "application/ocsp-request";
 #    add_header Accept "application/ocsp-response";
     add_header Access-Control-Allow-Methods "GET, HEAD";
     add_header X-SSL-CERT "$ssl_client_cert";
@@ -48,6 +49,7 @@ server {
     add_header Cache-Control "no-store, no-cache, must-revalidate, post-check=0, pre-check=0";
     add_header X-Frame-Options "SAMEORIGIN";
     add_header Referrer-Policy "no-referrer";
+    add_header Content-Type "application/x-sh";
     add_header X-Content-Type-Options "nosniff";
     add_header X-XSS-Protection "1; mode=block";
     add_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload";
