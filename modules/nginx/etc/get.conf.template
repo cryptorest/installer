@@ -12,7 +12,7 @@ server {
     root [ROOT_WWW];
 
     error_log [LOG_WWW]/error.log error;
-    access_log [LOG_WWW]/access.log;
+#    access_log [LOG_WWW]/access.log;
 
     ssl on;
     ssl_certificate [SSL_DOMAIN_DIR]/fullchain.pem;
