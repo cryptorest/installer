@@ -19,10 +19,6 @@ nginx_links_define()
 
     rm -f "/etc/nginx/conf.d/$conf_file_name" && \
     ln -s "$conf_file" "/etc/nginx/conf.d/$conf_file_name" && \
-    rm -f "/etc/nginx/sites-available/$conf_file_name" && \
-    ln -s "$conf_file" "/etc/nginx/sites-available/$conf_file_name" && \
-    rm -f "/etc/nginx/sites-enabled/$conf_file_name" && \
-    ln -s "/etc/nginx/sites-available/$conf_file_name" "/etc/nginx/sites-enabled/$conf_file_name" && \
 
     nginx -t
 }
